@@ -1,0 +1,57 @@
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "yekan";
+  src: url("./assets/fonts/Yekan.eot");
+  src: url("./assets/fonts/Yekan.eot?#iefix") format("embedded-opentype"),
+    url("./assets/fonts/Yekan.woff") format("woff"),
+    url("./assets/fonts/Yekan.ttf") format("truetype"),
+    url("./assets/fonts/Yekan.svg#svgFontName") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  direction: rtl;
+  overflow: hidden;
+  font-family: "yekan";
+}
+
+.breadCrumb {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  li {
+    color: #fff;
+    width: auto;
+    padding: 0;
+    margin-left: 16px;
+    position: relative;
+    > div {
+      > span {
+        font-size: 12px;
+      }
+    }
+    &:last-child {
+      color: #ccc;
+      opacity: 0.8;
+      > div {
+        > span {
+          font-size: 10px;
+        }
+      }
+      &:after {
+        display: none;
+      }
+    }
+    &:after {
+      content: "●";
+      margin-right: 5px;
+      margin-top: 2px;
+    }
+  }
+}
