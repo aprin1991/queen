@@ -13,10 +13,7 @@
   font-display: swap;
 }
 body {
-  padding: 0;
-  margin: 0;
   box-sizing: border-box;
-  direction: rtl;
   overflow: hidden;
   font-family: "yekan";
 }
@@ -54,4 +51,18 @@ body {
       margin-top: 2px;
     }
   }
+}
+.form-btn {
+  button {
+    margin-right: 10px;
+    color: #fff;
+    &.btn-save {
+      background-color: #ffbb2c;
+      border: none;
+      color: #333;
+      box-shadow: none;
+    }
+  }
+}
+.acc-list {
 }

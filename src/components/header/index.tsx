@@ -6,13 +6,16 @@ export default function Header() {
   return (
     <Box sx={{ flexGrow: 1, bgcolor: "transparent" }}>
       <AppBar position="static" color="primary">
-        <Toolbar
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          <SearchIcon />
+        <Toolbar className="flex justify-between">
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            color="inherit"
+          >
+            <SearchIcon />
+          </IconButton>
           <div>
             <IconButton
               size="large"
