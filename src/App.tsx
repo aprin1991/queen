@@ -10,6 +10,7 @@ import HomePage from "./pages/home";
 import rtlPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
+import { ToastContainer } from "react-toastify";
 
 interface IColorModeContext {
   mode?: "dark" | "light";
@@ -54,6 +55,7 @@ const App = () => {
               ? "rgba(0, 0, 0, 0.12)"
               : "rgba(255, 255, 255, 0.12);",
         },
+
         typography: {
           fontFamily: "yekan",
           fontSize: 12,
@@ -86,6 +88,18 @@ const App = () => {
               </div>
             </Container>
           </div>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            limit={4}
+          />
         </ThemeProvider>
       </CacheProvider>
     </ColorModeContext.Provider>

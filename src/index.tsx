@@ -1,3 +1,4 @@
+import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
 import React from "react";
 import ReactDOM from "react-dom";

@@ -64,5 +64,20 @@ body {
     }
   }
 }
-.acc-list {
+button {
+  font-family: inherit;
+}
+.ltr {
+  direction: ltr;
+}
+.Toastify {
+  z-index: 250000;
+  position: relative;
+  .Toastify__toast-body {
+    div {
+      color: #000 !important;
+      font-family: "yekan";
+      text-align: right;
+    }
+  }
 }
