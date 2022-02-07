@@ -1,8 +1,13 @@
-import { IconButton, List, ListItem, ListItemText } from "@mui/material";
+import { List, ListItem, ListItemText } from "@mui/material";
+import React from "react";
+import { useDarkMode } from "../../hooks";
 
 const BreadCrumb = () => {
+  const darkMode = useDarkMode();
+
+  const { mode } = darkMode;
   return (
-    <List className="breadCrumb mb-6" sx={{ fontSize: 11 }}>
+    <List className={`breadCrumb mb-6 ${mode}`} sx={{ fontSize: 11 }}>
       <ListItem className="inline-block">
         <ListItemText primary={`خانه`} />
       </ListItem>
@@ -15,4 +20,4 @@ const BreadCrumb = () => {
     </List>
   );
 };
-export default BreadCrumb;
+export default React.memo(BreadCrumb);

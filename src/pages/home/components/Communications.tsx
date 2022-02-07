@@ -9,12 +9,7 @@ const Communications: React.FC<CommunicationProp> = ({
   return (
     <div>
       {data?.map((el: ContactProp) => (
-        <Card
-          key={el?.social_id}
-          item={el}
-          removeItem={removeItem}
-          edit={edit}
-        />
+        <Card key={el?.id} item={el} removeItem={removeItem} edit={edit} />
       ))}
     </div>
   );

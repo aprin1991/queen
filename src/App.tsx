@@ -11,7 +11,7 @@ import rtlPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import { ToastContainer } from "react-toastify";
-
+import { darkTheme, lightTheme } from "./theme";
 interface IColorModeContext {
   mode?: "dark" | "light";
   toggleColorMode: () => void;
@@ -26,51 +26,21 @@ const cacheRtl = createCache({
 });
 
 const App = () => {
-  const [mode, setMode] = useState<"light" | "dark">("light");
+  const [mode, setMode] = useState<"light" | "dark">("dark");
   const colorMode = useMemo(
     () => ({
+      mode,
       toggleColorMode: () => {
         setMode((prev) => (prev === "light" ? "dark" : "light"));
       },
     }),
     [mode]
   );
-  const theme = useMemo(
-    () =>
-      createTheme({
-        direction: "rtl",
-        palette: {
-          mode,
-          primary: {
-            main: "#0f161f",
-            light: "#757ce8",
-            dark: "#002884",
-            contrastText: "#fff",
-          },
-          secondary: {
-            main: "#384450",
-          },
-          divider:
-            mode === "light"
-              ? "rgba(0, 0, 0, 0.12)"
-              : "rgba(255, 255, 255, 0.12);",
-        },
 
-        typography: {
-          fontFamily: "yekan",
-          fontSize: 12,
-          h6: {
-            color: "#fff",
-            fontSize: 12,
-          },
-        },
-      }),
-    [mode]
-  );
   return (
     <ColorModeContext.Provider value={colorMode}>
       <CacheProvider value={cacheRtl}>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={mode === "dark" ? darkTheme : lightTheme}>
           <div dir="rtl">
             <CssBaseline />
             <Header />
@@ -78,7 +48,7 @@ const App = () => {
               maxWidth={false}
               color="primary"
               sx={{
-                bgcolor: "#0f161f",
+                bgcolor: `${mode === "dark" ? "#0f161f" : "#fff"}`,
                 overflowY: "auto",
               }}
               className="w-screen h-screen"

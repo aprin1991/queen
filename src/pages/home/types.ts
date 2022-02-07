@@ -4,6 +4,16 @@ type InformationProps = {
   isEditMode: boolean;
   cancelEdit: Function;
   saveEdit: Function;
+  itemsList: [];
+};
+type AddProps = {
+  expand: Function;
+  save: Function;
+  cancelEdit: Function;
+  saveEdit: Function;
+  editItem: ContactProp;
+  isEditMode: boolean;
+  itemsList: Array<ContactProp>;
 };
 type CommunicationProp = {
   data: Array<ContactProp>;
@@ -25,4 +35,10 @@ type ContactProp = {
   prevId?: string;
   id: string;
 };
-export type { InformationProps, CommunicationProp, CartProps, ContactProp };
+export type {
+  InformationProps,
+  CommunicationProp,
+  CartProps,
+  ContactProp,
+  AddProps,
+};

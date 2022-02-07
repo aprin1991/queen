@@ -43,7 +43,7 @@ const Card: React.FC<CartProps> = ({ item, removeItem, edit }) => {
         break;
     }
     return (
-      <div className="flex justify-start items-center ml-4">
+      <div className="flex justify-start items-center ml-4 w-full md:w-auto  mb-2 lg:mb-0">
         {image}
         <h6 className="text-white text-xs font-normal my-0 mr-2">{title}</h6>
       </div>
@@ -51,16 +51,16 @@ const Card: React.FC<CartProps> = ({ item, removeItem, edit }) => {
   }, [item]);
   return (
     <div
-      className="flex justify-between items-center rounded-md mb-2 px-4 py-2"
+      className="flex justify-between items-center rounded-md mb-2 px-4 py-2 flex-wrap"
       style={{ background: "#384450" }}
     >
-      <div className="flex-grow flex justify-start items-center text-sm">
+      <div className="flex-grow w-full lg:w-auto flex justify-start items-center text-sm flex-wrap">
         {renderItem()}
-        <div className="flex justify-start items-center ml-4 text-white">
+        <div className="flex justify-start items-center ml-4 text-white flex-wrap  mb-2 lg:mb-0 w-full md:w-auto">
           <span className=" text-xs opacity-60 ml-2">آی دی ( ID )</span>
           <span>{item?.social_id}</span>
         </div>
-        <div className="flex justify-start items-center text-white">
+        <div className="flex justify-start items-center text-white w-full md:w-auto mb-2 lg:mb-0">
           <span className=" text-xs opacity-60 ml-2">لینک</span>
           <span>{item?.social_link}</span>
         </div>

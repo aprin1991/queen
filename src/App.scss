@@ -22,6 +22,15 @@ body {
   display: flex;
   justify-content: start;
   align-items: center;
+  &.light {
+    li {
+      color: #000;
+    }
+    &:last-child {
+      color: #000;
+      opacity: 1;
+    }
+  }
   li {
     color: #fff;
     width: auto;

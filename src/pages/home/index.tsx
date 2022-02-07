@@ -7,7 +7,10 @@ import Communications from "./components/Communications";
 import { ContactProp } from "./types";
 import ConfirmDialog from "./components/ConfirmDialog";
 import { Request, URLS } from "../../api";
+import { useDarkMode } from "../../hooks";
 const HomePage = () => {
+  const darkMode = useDarkMode();
+  const { mode } = darkMode;
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState<Array<ContactProp> | any>([]);
   const [editMode, setEditMode] = useState(false);
@@ -18,9 +21,8 @@ const HomePage = () => {
   useEffect(() => {
     getSocials();
   }, []);
-  const saveItem = (item: ContactProp) => {
+  const saveItem = () => {
     getSocials();
-    //setItems([...items, item]);
   };
   const getSocials = async () => {
     const response = await Request.get(URLS.Socials);
@@ -39,9 +41,7 @@ const HomePage = () => {
   const confirmedRemove = async () => {
     setOpen(false);
 
-    const removeItem = await Request.delete(URLS.Socials, {
-      params: { id: removedItem?.id },
-    });
+    const removeItem = await Request.delete(URLS.SocialItem(removedItem?.id));
     if (removeItem) {
       getSocials();
       clearRemovedItem();
@@ -60,18 +60,30 @@ const HomePage = () => {
     clearRemovedItem();
     setEditMode(false);
   };
-  const saveEdit = (item: ContactProp) => {
-    setItems(
-      items?.map((el: ContactProp) =>
-        el?.social_id === item?.prevId ? item : el
-      )
-    );
+  const saveEdit = async (item: ContactProp) => {
+    const { social_type, social_link, social_id } = item;
+
+    const editItem = await Request.put(URLS.SocialItem(item?.id), {
+      social_type,
+      social_link,
+      social_id,
+    });
+    if (editItem) {
+      getSocials();
+    }
   };
+
   return (
     <Container maxWidth="lg" className="">
       <PageTitle title="حساب کاربری" />
       <BreadCrumb />
-      <div className="mt-4 bg-slate-800 w-full rounded-md p-4">
+      <div
+        className={`mt-4 ${
+          mode === "dark"
+            ? "bg-slate-800"
+            : "text-white shadow-lg border border-gray-200"
+        } w-full rounded-md p-4`}
+      >
         <Typography variant="h6" color="" className="opacity-60 mb-4">
           مسیرهای ارتباطی
         </Typography>
@@ -81,6 +93,7 @@ const HomePage = () => {
           save={saveItem}
           cancelEdit={handleCancelEdit}
           saveEdit={saveEdit}
+          itemsList={items}
         />
         {items?.length > 0 && (
           <Communications
